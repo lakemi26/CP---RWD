@@ -16,7 +16,7 @@ function Footer() {
         </div>
         
         <div className="footer-logos">
-          <a href="/Selfc"><img src='/images/Logo.png' alt='Logo SelfC.'/></a>
+          <a href="/Selfc"><img src='/images/Logo.png' alt='Logo SelfC.'/></a> 
 
         </div>
     </div>
@@ -24,3 +24,5 @@ function Footer() {
 }
 
 export default Footer;
+
+//Os nomes e RMs estão ao clicar na logo do rodapé.
