@@ -1,15 +1,15 @@
 import React from 'react';
 import './PagClie.css';
-import ClimaBanner from '../Clima-banner';
-import LinhaBoleto from '../linhaBoleto';
-import BoletoBanner from '../BoletoBanner';
+import LinhaAgendamentos from '../LinhaAgendamentos';
+import MassagemBanner from '../MassagemBanner';
+import Banner2 from '../Banner2';
 
 function PagClie() {
     return (
       <>
-        <ClimaBanner/>
-        <LinhaBoleto/>
-        <BoletoBanner/>
+        <MassagemBanner/>
+        <LinhaAgendamentos/>
+        <Banner2/>
       </>
     );
   }
