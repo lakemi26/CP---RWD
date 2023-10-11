@@ -7,10 +7,9 @@ const Formulario = () => {
   const [formData, setFormData] = useState({});
 
   const onSubmit = (data) => {
-    console.log(data); // Verifique se os dados estão corretos aqui
+    console.log(data);
     setFormData(data);
     localStorage.setItem('formData', JSON.stringify(data));
-    // Lógica para processar os dados do formulário e navegação
   };
 
   useEffect(() => {
@@ -20,10 +19,7 @@ const Formulario = () => {
     }
   }, []);
 
-  const handleClearData = () => {
-    localStorage.removeItem('formData');
-    setFormData({});
-  };
+
 
   return (
     <div className="form-container">
