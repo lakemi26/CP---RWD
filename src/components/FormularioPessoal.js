@@ -1,164 +1,133 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm, Controller } from 'react-hook-form';
 import '../components/Formularios.css';
 
 const Formulario = () => {
-  const [formData, setFormData] = useState({
-    nome: '',
-    nascimento: '',
-    cpf: '',
-    email: '',
-    telefone: '',
-    endereco: '',
-    numero: '',
-    concordoTermosUso: false,
-    concordoContrato: false,
-    receberSms: false,
-  });
+  const { control, handleSubmit, formState: { errors } } = useForm();
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === 'checkbox' ? checked : value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = (data) => {
+    console.log(data);
     // Lógica para processar os dados do formulário
-    console.log(formData);
     // Navegação para a próxima página (se houver)
   };
 
   return (
     <div className="form-container">
-        <h1>Cadastro Pessoal</h1>
-      <form onSubmit={handleSubmit}>
-
+      <h1>Cadastro Pessoal</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <label className='campo'>
           Nome:
-          <input
-            type="text"
+          <Controller
             name="nome"
-            value={formData.nome}
-            onChange={handleChange}
-            placeholder= "Nome completo"
-            errorMessage=
-                "Verifique seu nome!"
-            label= "Nome"
-            pattern= "^[A-Za-z0-9]{3,16}$"
-            required
+            control={control}
+            defaultValue=""
+            rules={{ required: 'Campo obrigatório' }}
+            render={({ field }) => <input {...field} type="text" placeholder="Nome completo" />}
           />
+          {errors.nome && <p>{errors.nome.message}</p>}
         </label>
-        
+
         <label className='campo'>
           Data de Nascimento:
-          <input
-            type="date"
+          <Controller
             name="nascimento"
-            value={formData.nascimento}
-            onChange={handleChange}
-            required
+            control={control}
+            defaultValue=""
+            rules={{ required: 'Campo obrigatório' }}
+            render={({ field }) => <input {...field} type="date" />}
           />
+          {errors.nascimento && <p>{errors.nascimento.message}</p>}
         </label>
 
         <label className='campo'>
-        CPF:
-        <input
-            type="text"
+          CPF:
+          <Controller
             name="cpf"
-            value={formData.cpf}
-            onChange={handleChange}
-            placeholder="Digite seu CPF"
-            pattern="^\d{11}$"
-            required
-        />
+            control={control}
+            defaultValue=""
+            rules={{ required: 'Campo obrigatório', pattern: /^\d{11}$/ }}
+            render={({ field }) => <input {...field} type="text" placeholder="Digite seu CPF" />}
+          />
+          {errors.cpf && <p>{errors.cpf.message}</p>}
         </label>
 
         <label className='campo'>
-        Email:
-        <input
-            type="email"
+          Email:
+          <Controller
             name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Digite seu email"
-            required
-        />
+            control={control}
+            defaultValue=""
+            rules={{ required: 'Campo obrigatório' }}
+            render={({ field }) => <input {...field} type="email" placeholder="Digite seu email" />}
+          />
+          {errors.email && <p>{errors.email.message}</p>}
         </label>
 
         <label className='campo'>
-        Telefone:
-        <input
-            type="tel"
+          Telefone:
+          <Controller
             name="telefone"
-            value={formData.telefone}
-            onChange={handleChange}
-            placeholder="Digite seu telefone"
-            required
-        />
-        </label>      
-        
+            control={control}
+            defaultValue=""
+            rules={{ required: 'Campo obrigatório' }}
+            render={({ field }) => <input {...field} type="tel" placeholder="Digite seu telefone" />}
+          />
+          {errors.telefone && <p>{errors.telefone.message}</p>}
+        </label>
+
         <label className='campo'>
-        Endereço:
-        <input
-            type="text"
+          Endereço:
+          <Controller
             name="endereco"
-            value={formData.endereco}
-            onChange={handleChange}
-            placeholder="Digite seu endereço"
-            required
-        />
+            control={control}
+            defaultValue=""
+            rules={{ required: 'Campo obrigatório' }}
+            render={({ field }) => <input {...field} type="text" placeholder="Digite seu endereço" />}
+          />
+          {errors.endereco && <p>{errors.endereco.message}</p>}
         </label>
 
         <label className='campo'>
-        Número:
-        <input
-            type="text"
+          Número:
+          <Controller
             name="numero"
-            value={formData.numero}
-            onChange={handleChange}
-            placeholder="Digite o número"
-            required
-        />
+            control={control}
+            defaultValue=""
+            rules={{ required: 'Campo obrigatório' }}
+            render={({ field }) => <input {...field} type="text" placeholder="Digite o número" />}
+          />
+          {errors.numero && <p>{errors.numero.message}</p>}
         </label>
 
-        {/* Checkbox para Concordo com os Termos de Uso */}
         <label>
-          <input
-            type="checkbox"
+          <Controller
             name="concordoTermosUso"
-            checked={formData.concordoTermosUso}
-            onChange={handleChange}
-            required
-          /> Concordo com os Termos de Uso
+            control={control}
+            defaultValue={false}
+            rules={{ required: 'Você deve concordar com os termos de uso' }}
+            render={({ field }) => (
+              <input {...field} type="checkbox" />
+            )}
+          /> Concordo com os Termos de Uso.
+          {errors.concordoTermosUso && <p>{errors.concordoTermosUso.message}</p>}
         </label>
 
-        {/* Checkbox para Declaro que li o Contrato */}
         <label>
-          <input
-            type="checkbox"
+          <Controller
             name="concordoContrato"
-            checked={formData.concordoContrato}
-            onChange={handleChange}
-            required
-          /> Declaro que li o Contrato e concordo com todos os tópicos listados
-        </label>
-
-        {/* Checkbox para Receber SMS com informações sobre o clima */}
-        <label>
-          <input
-            type="checkbox"
-            name="receberSms"
-            checked={formData.receberSms}
-            onChange={handleChange}
-          /> Desejo receber SMS com informações sobre o clima na minha região
+            control={control}
+            defaultValue={false}
+            rules={{ required: 'Você deve declarar que leu o contrato' }}
+            render={({ field }) => (
+              <input {...field} type="checkbox" />
+            )}
+          /> Declaro que li o Contrato e concordo com todos os tópicos listados.
+          {errors.concordoContrato && <p>{errors.concordoContrato.message}</p>}
         </label>
 
         <button type="submit">
             <a href="/AgendamentoFinal">Enviar</a>
         </button>
-        
       </form>
     </div>
   );
