@@ -1,124 +1,101 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm, Controller } from 'react-hook-form';
 import '../components/Formularios.css';
 
 const FormulariosAgendamento = () => {
-    const [formData, setFormData] = useState({
-      dataAgendamento: '',
-      local: '',
-      valorcompra: '',
-      procedimento: [],
-      servico: [],
-    });
+  const { control, handleSubmit, formState: { errors } } = useForm();
 
-    const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        setFormData({
-          ...formData,
-          [name]: type === 'checkbox' ? checked : value,
-        });
-      };
-    
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        // Lógica para processar os dados do formulário
-        console.log(formData);
-        // Navegação para a próxima página (se houver)
-      };
+  const onSubmit = (data) => {
+    console.log(data);
+    // Lógica para processar os dados do formulário
+    // Navegação para a próxima página (se houver)
+  };
 
-      const handleAcessorioChange = (event) => {
-        const { value } = event.target;
-      
-        setFormData(prevState => {
-          if (prevState.acessorio.includes(value)) {
-            return { ...prevState, acessorio: prevState.acessorio.filter(item => item !== value) };
-          } else {
-            return { ...prevState, acessorio: [...prevState.acessorio, value] };
-          }
-        });
-    }
+  return (
+    <div className="form-container">
+      <h1>Agendamento</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label className='campo'>
+          Data do procedimento:
+          <Controller
+            name="dataAgendamento"
+            control={control}
+            defaultValue=""
+            rules={{ required: 'Campo obrigatório' }}
+            render={({ field }) => <input {...field} type="date" />}
+          />
+          {errors.dataAgendamento && <p>{errors.dataAgendamento.message}</p>}
+        </label>
 
-      return (
-        <div className="form-container">
-            <h1>Agendamento</h1>
-          <form onSubmit={handleSubmit}>
-    
+        <label className='campo'>
+          Local Desejado:
+          <Controller
+            name="local"
+            control={control}
+            defaultValue=""
+            rules={{ required: 'Campo obrigatório' }}
+            render={({ field }) => <input {...field} type="text" placeholder="Local desejado" />}
+          />
+          {errors.local && <p>{errors.local.message}</p>}
+        </label>
+
+        <div className='checkbox'>
+          Você fez algum procedimento nos últimos 6 meses?
+          <label>
+            <Controller
+              name="procedimento"
+              control={control}
+              defaultValue=""
+              rules={{ required: 'Selecione uma opção' }}
+              render={({ field }) => (
+                <input {...field} type="radio" value="sim" />
+              )}
+            /> Sim
+          </label>
+          <label>
+            <Controller
+              name="procedimento"
+              control={control}
+              defaultValue=""
+              rules={{ required: 'Selecione uma opção' }}
+              render={({ field }) => (
+                <input {...field} type="radio" value="nao" />
+              )}
+            /> Não
+          </label>
+          {errors.procedimento && <p>{errors.procedimento.message}</p>}
+        </div>
+
+        <div className='checkbox'>
           <label className='campo'>
-            Data do procedimento:
-            <input
-                type="date"
-                name="dataAgendamento"
-                value={formData.datacompra}
-                onChange={handleChange}
-                errorMessage="Verifique a data do Agendamento"
-                label="Data do Agendamento"
-                required
-            />
-            </label>
-
-            <label className='campo'>
-            Local Desejado:
-            <input
-                type="text"
-                name="local"
-                value={formData.localcompra}
-                onChange={handleChange}
-                placeholder="Local desejado"
-                errorMessage="Verifique o local desejado"
-                label="Local desejado"
-                pattern="^[A-Za-z\s]+$"
-                required
-            />
-            </label>
-    
-            <div className='checkbox'>
-            Você fez algum procedimento nos últimos 6 meses?
-            <label>
-                <input
-                type="radio"
-                name="procedimento"
-                value="sim"
-                checked={formData.revisao === 'sim'}
-                onChange={handleChange}
-                />
-                Sim
-            </label>
-            <label>
-                <input
-                type="radio"
-                name="procedimento"
-                value="nao"
-                checked={formData.revisao === 'nao'}
-                onChange={handleChange}
-                />
-                Não
-            </label>
-            </div>
-
-            <div className='checkbox'>
-            <label className='campo'>
             Escolha o procedimento:
-            <select
-                name="servico"
-                value={formData.plano}
-                onChange={handleChange}
-            >
-                <option value="">Selecione...</option>
-                <option value="Massagem">Massagem</option>
-                <option value="Unhas">Unhas</option>
-                <option value="Cabelo">Cabelo</option>
-                <option value="Sobrancelhas">Sobrancelhas</option>
-            </select>
-            </label>    
-            </div>
+            <Controller
+              name="servico"
+              control={control}
+              defaultValue=""
+              rules={{ required: 'Selecione uma opção' }}
+              render={({ field }) => (
+                <select {...field}>
+                  <option value="">Selecione...</option>
+                  <option value="Massagem">Massagem</option>
+                  <option value="Unhas">Unhas</option>
+                  <option value="Cabelo">Cabelo</option>
+                  <option value="Sobrancelhas">Sobrancelhas</option>
+                </select>
+              )}
+            />
+          </label>
+          {errors.servico && <p>{errors.servico.message}</p>}
+        </div>
 
-            <div className='botoes'>
+        <div className='botoes'>
             <button>
               <a href="/PagClie">Enviar</a>
             </button>
-            </div>
-          </form>
         </div>
-      );
-    };
-    
-    export default FormulariosAgendamento;
+      </form>
+    </div>
+  );
+};
+
+export default FormulariosAgendamento;
