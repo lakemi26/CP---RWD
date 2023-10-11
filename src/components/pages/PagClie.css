@@ -1,0 +1,9 @@
+.PagClie{
+    display: flex;
+    flex-direction: column;
+}
+
+.img-pagClie{
+    width: 100%;
+    height: 100%;
+}
