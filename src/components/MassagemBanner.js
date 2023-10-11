@@ -5,7 +5,7 @@ import './Banner.css';
 function MassagemBanner() {
   return (
     <div className='hero-container'>
-      <img src='/images/BannerMassa.jpeg' alt="Logo" className="Banner" />
+      <img src='/images/BannerLogin.jpeg' alt="Logo" className="Banner" />
     </div>
   );
 }
