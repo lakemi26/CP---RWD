@@ -1,7 +1,7 @@
-import { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import "./Login.css";
 import FormInput from "../FormInput";
+import "./Login.css";
 
 const Login = () => {
   const [values, setValues] = useState({
@@ -32,13 +32,23 @@ const Login = () => {
     },
   ];
 
+  useEffect(() => {
+    const savedData = JSON.parse(localStorage.getItem('formData'));
+    if (savedData) {
+      setValues(savedData);
+    }
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    localStorage.setItem('formData', JSON.stringify(values));
+    // Lógica para processar os dados do formulário e navegação
   };
 
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
+
 
   return (
   

@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import '../components/Formularios.css';
 
 const Formulario = () => {
   const { control, handleSubmit, formState: { errors } } = useForm();
+  const [formData, setFormData] = useState({});
 
   const onSubmit = (data) => {
-    console.log(data);
-    // Lógica para processar os dados do formulário
-    // Navegação para a próxima página (se houver)
+    console.log(data); // Verifique se os dados estão corretos aqui
+    setFormData(data);
+    localStorage.setItem('formData', JSON.stringify(data));
+    // Lógica para processar os dados do formulário e navegação
+  };
+
+  useEffect(() => {
+    const savedData = JSON.parse(localStorage.getItem('formData'));
+    if (savedData) {
+      setFormData(savedData);
+    }
+  }, []);
+
+  const handleClearData = () => {
+    localStorage.removeItem('formData');
+    setFormData({});
   };
 
   return (
@@ -62,6 +76,19 @@ const Formulario = () => {
           />
           {errors.email && <p>{errors.email.message}</p>}
         </label>
+
+        <label className='campo'>
+          Senha:
+          <Controller
+            name="senha"
+            control={control}
+            defaultValue=""
+            rules={{ required: 'Campo obrigatório', minLength: 6 }} // Exemplo de regra de validação para a senha
+            render={({ field }) => <input {...field} type="password" placeholder="Digite sua senha" />}
+          />
+          {errors.senha && <p>{errors.senha.message}</p>}
+        </label>
+
 
         <label className='campo'>
           Telefone:
