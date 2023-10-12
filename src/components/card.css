@@ -1,0 +1,53 @@
+.card {
+    display: flex;
+    align-items: center;
+    max-width: 80%;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+}
+
+.image {
+    flex: 0 0 200px;
+    max-width: 400px;
+    max-height: 400px;
+    margin-right: 10px;
+}
+
+.image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+
+}
+
+.info {
+    flex: 1;
+}
+
+.name {
+    margin-top: -20px;
+    margin-left: 12px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #af4803;
+    background-color: rgba(251, 207, 207, 0.5);
+
+}
+
+.description {
+    font-size: 14px;
+    margin-top: 10px;
+    margin-left: 25px;
+}
+
+.price {
+    font-size: 18px;
+    color: #ff6600;
+    margin-top: 10px;
+    margin-left: 25px;
+
+}

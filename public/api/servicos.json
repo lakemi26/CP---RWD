@@ -1,0 +1,64 @@
+[
+    {
+        "tipo" : "sombrancelhas",
+        "nome" : "micropgmentação",
+        "valor" : 150,
+        "descricao" : "A técnica imita os fios de sobrancelha, o pigmento é aplicado de forma a imitar um fio normal.",
+        "img" : "SombracelhaMicropigmentacao"
+    },
+    {
+        "tipo" : "sombrancelhas",
+        "nome" : "nanopgmentação",
+        "valor" : 180,
+        "descricao" : "A Nanopigmentação é um processo estético de pigmentação de média duração para sobrancelhas.",
+        "img" : "SombracelhaNanopigmentacao"
+    },{
+        "tipo" : "massagem",
+        "nome" : "massagem relaxante",
+        "valor" : 200,
+        "descricao" : "Relaxa o corpo, combate o estresse, cansaço e as dores musculares.",
+        "img" : "MassagemRelaxante"
+    },{
+        "tipo" : "massagem",
+        "nome" : "massagem modeladora",
+        "valor" : 280,
+        "descricao" : "Tem como objetivo modelar o corpo, reduzir circunferência e ativar a circulação sanguínea.",
+        "img" : "massagemModeladora"
+    },{
+        "tipo" : "cabelo",
+        "nome" : "Corte de cabelo",
+        "valor" : 150,
+        "descricao" : "Hidratação e finalização inclusa.",
+        "img" : "CabeloHidratacaoFinalizacao"
+    },{
+        "tipo" : "cabelo",
+        "nome" : "Penteados",
+        "valor" : 150,
+        "descricao" : "Penteados diversos.",
+        "img" : "CabeloPentiado"
+    },{
+        "tipo" : "cabelo",
+        "nome" : "Loiro iluminado",
+        "valor" : 300,
+        "descricao" : "Luzes, Moreno iluminado, etc...",
+        "img" : "LoiroIluminado"
+    },{
+        "tipo" : "cabelo",
+        "nome" : "Tonalização",
+        "valor" : 400,
+        "descricao" : "Tintura da cor de sua preferencia.",
+        "img" : "CabeloTonalizado"
+    },{
+        "tipo" : "unha",
+        "nome" : "Manicure e pedicure",
+        "valor" : 80,
+        "descricao" : "Decoração, cuticulagem, esmaltação e etc...",
+        "img" : "ManicureEpedicure"
+    },{
+        "tipo" : "unha",
+        "nome" : "Spa para pés",
+        "valor" : 100,
+        "descricao" : "Spa relaxante para tirar calos, excesso de pele e etc.",
+        "img" : "Unha"
+    }
+]
